@@ -22,9 +22,8 @@ public class Vote {
     @Column(name = "id_vote", nullable = false)
     private Long id_vote;
 
-    @JoinColumn(name = "id_agenda")
+    @JoinColumn(name = "id_agenda", referencedColumnName = "id_agenda")
     @OneToOne
-    @Column(name = "id_agenda", nullable = false)
     private Agenda id_agenda;
 
     @Column(name = "vote", nullable = false)
