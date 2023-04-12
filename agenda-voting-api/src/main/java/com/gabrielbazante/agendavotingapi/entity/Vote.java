@@ -31,4 +31,7 @@ public class Vote {
 
     @Column(name = "cpf", nullable = false)
     private String cpf;
+
+    @Column(name = "active", nullable = false)
+    private String active;
 }
