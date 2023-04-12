@@ -1,5 +1,6 @@
 package com.gabrielbazante.agendavotingapi.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,13 +19,17 @@ public class Vote {
     @Id
     @SequenceGenerator(name = "vote_id_vote_seq", sequenceName = "vote_id_vote_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "vote_id_vote_seq")
+    @Column(name = "id_vote", nullable = false)
     private Long id_vote;
 
     @JoinColumn(name = "id_agenda")
     @OneToOne
+    @Column(name = "id_agenda", nullable = false)
     private Agenda id_agenda;
 
+    @Column(name = "vote", nullable = false)
     private String vote;
 
+    @Column(name = "cpf", nullable = false)
     private String cpf;
 }
