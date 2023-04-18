@@ -20,18 +20,25 @@ public class Vote {
     @SequenceGenerator(name = "vote_id_vote_seq", sequenceName = "vote_id_vote_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "vote_id_vote_seq")
     @Column(name = "id_vote", nullable = false)
-    private Long id_vote;
+    private Long idVote;
 
-    @JoinColumn(name = "id_agenda", referencedColumnName = "id_agenda")
+    @JoinColumn(referencedColumnName = "id_agenda")
     @OneToOne
-    private Agenda id_agenda;
+    private Agenda idAgenda;
+
+    @JoinColumn(referencedColumnName = "id_voter")
+    @OneToOne
+    private Voter idVoter;
 
     @Column(name = "vote", nullable = false)
-    private String vote;
+    private String currentVote;
 
-    @Column(name = "cpf", nullable = false)
-    private String cpf;
+    public Vote(){}
 
-    @Column(name = "active", nullable = false)
-    private String active;
+    public Vote(Voter voter, Agenda agenda, String vote){
+        this.idVoter = voter;
+        this.idAgenda = agenda;
+        this.currentVote = vote;
+    }
+
 }
