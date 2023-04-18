@@ -4,13 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.gabrielbazante.agendavotingapi.entity.Agenda;
+import com.gabrielbazante.agendavotingapi.entity.Session;
 
 @Repository
-public interface AgendaRepository extends JpaRepository<Agenda, Long>{
+public interface SessionRepository extends JpaRepository<Session, Long>{
     
-    Agenda findByIdAgenda (Long idAgenda);
+    Session findByIdSession(Long idSession);
 
-    Agenda findByTitle (String title);
+    Session findSessionByIdAgenda (Agenda agenda);
 
-    void deleteById (Long id);
 }

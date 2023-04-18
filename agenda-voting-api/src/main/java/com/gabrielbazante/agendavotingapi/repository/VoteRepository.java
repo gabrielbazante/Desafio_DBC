@@ -10,10 +10,16 @@ import com.gabrielbazante.agendavotingapi.entity.Vote;
 @Repository
 public interface VoteRepository extends JpaRepository<Vote, Long>{
 
-    @Query("SELECT v FROM Vote v WHERE v.cpf = :CPF AND v.active = 'ACTIVE'")
-    Vote findByCpf (@Param("CPF")String cpf);
+    Vote findByIdVote(Long idVote);
+
+    @Query("SELECT v FROM Vote v WHERE v.idAgenda.idAgenda = :ID AND v.idVoter.idVoter = :IDVOTER")
+    Vote findVoteByIdAgenda(@Param("ID")Long idAgenda, @Param("IDVOTER")Long idVoter);
     
-    @Query("SELECT v FROM Vote v WHERE v.id_agenda.id_agenda = :ID AND v.active = 'ACTIVE'")
-    Vote findByIdVote (@Param("ID")Long idVote);
+    @Query("SELECT COUNT(v.currentVote) FROM Vote v WHERE v.idAgenda.idAgenda = :idAgenda AND v.currentVote = 'Yes'")
+     int countTotalVotesPerAgendaYes(@Param("idAgenda")Long idAgenda);
+
+    @Query("SELECT COUNT(v.currentVote) FROM Vote v WHERE v.idAgenda.idAgenda = :idAgenda AND v.currentVote = 'No'")
+     int countTotalVotesPerAgendaNo(@Param("idAgenda")Long idAgenda);
+
 
 }
